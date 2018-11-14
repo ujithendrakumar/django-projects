@@ -1,0 +1,25 @@
+{% extends 'basic_app/base.html' %}
+  {% block body_block %}
+    <div class="row" >
+      <div class="col-3"></div>
+      <div class="col-5" style="background:#eee;padding:15px;margin-top:15%">
+      <h1>Login Here....!</h1>
+      <form class="" action="{% url 'basic_app:user_login' %}" method="post">
+        {% csrf_token %}
+          <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" name="username"  placeholder="Username" class="form-control">
+          </div>
+          <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password"  placeholder="Password" class="form-control">
+          </div>
+          <div class="form-group">
+              <input type="submit" name="submit"  value="Login" class="btn btn-success">
+          </div>
+      </form>
+
+      </div>
+    </div>
+
+  {% endblock body_block %}
