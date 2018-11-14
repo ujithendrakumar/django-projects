@@ -1,0 +1,115 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Todo  App</title>
+    <style>
+      .header{
+        background-color: teal;
+      }
+      .header>.container>h3{color:#fff;padding:40px}
+      .mr50{margin-top:20px;}
+      .card{
+        -webkit-box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.4);
+        -moz-box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.4);
+        box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.4);
+        background-color:teal;color:#fff;
+        }
+        .card_bg{
+        background-color:green;color:#fff;
+        }
+        .card_bg_2{
+        background-color:red;color:#fff;
+        }
+        #no_link{
+            text-decoration: none;
+            color:#fff;
+            
+            }
+    </style>
+  </head>
+  <body>
+    
+    <div class="container-fluid header">
+          <div class="container">
+              <h3>What Do You Want To Do...!</h3>
+          </div>
+    </div>
+    <div class="container">
+      <div class="row mr50">
+          <div class="col-3"></div>
+          <div class="col-6 ">
+              <form  method="POST" action="{% url 'add' %}">
+                  <div class="input-group mb-3">
+                      <!-- <input type="text" name="name" class="form-control" placeholder=" name" > -->
+                      {{form.name}}
+                      {% csrf_token %}
+                      <div class="input-group-append">
+                        <button class="btn btn-success" type="submit">Add </button>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                        <a href="{% url 'delete_completed' %}" class="btn btn-md btn-danger">  Delete Completed</a>
+                        <a href="{% url 'delete_all' %}" class="btn btn-md btn-danger">  Delete All </a>
+                    </div>
+              </form>
+          </div>
+          <div class="col">
+            
+          </div>
+      </div>
+    </div>
+    <div class="container"> 
+      
+     
+      <div class="row mr50 justify-content-md-center">
+        {% if todo_list %}
+            {% for list  in  todo_list %}
+                <div class="col-md-auto mr50">
+                    {% if list.complete %}
+                        <div class="card card_bg_2" style="width: 20rem;">
+                    {% else %}
+                        <div class="card card_bg" style="width: 20rem;">
+                    {% endif %}
+                   
+                        <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+                        <div class="card-body">
+                        <div class="row">
+                            <div class="col text-center">
+                                {% if list.complete %}
+                                    <h4 class="card-title text-uppercase"><strike>{{ list.name}} </strike></h4>
+                                {% else %}
+                              <a href="{% url 'complete' list.id  %}" id="no_link"> <h4 class="card-title text-uppercase">{{ list.name}} </h4></a> 
+                                {% endif %}
+                                <!-- <p class="card-title text-uppercase">{{ list.created}} </p> -->
+                                
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+        {% endif %}
+      </div>
+      
+    </div>
+    
+
+
+
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

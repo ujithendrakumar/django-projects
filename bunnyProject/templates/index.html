@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+    {% block body_block %}
+        
+        <div class="container justify-content-center align-items-center mr50">
+            <div class="row mr50">
+            <div class="col mr50">
+                <h1>This is Add Blog Page</h1>
+                <div class="from-group">
+                        <!-- <select name="" id="" class="form-control">
+                            <option value="">Select </option>
+                            {% for i in li %}
+                                <option value=""> {{ i }}</option>
+                            {% endfor %}
+                       </select> -->
+                   </div>
+                <form action="" method="POST">
+                    {% for item in form %}
+                        <div class="from-group">
+                            <label > {{item.label}}</label>
+                            {% if item.name == 'description' %}
+                                    <textarea name="{{ item.name }}" class="form-control" ></textarea>
+                            {% else %}
+                            <br>
+                            <input type="text " name="{{ item.name }}" class="form-control"><br>
+                            {% endif %}
+                        </div>
+                    {% endfor %}    
+                    {% csrf_token %}
+                    <input type="submit" name="submit" class="btn btn-md btn-success">
+                </form> 
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        </div>
+
+     
+    {% endblock body_block %}
+
+        

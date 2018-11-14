@@ -1,0 +1,28 @@
+<!Doctype html>
+{% extends 'base.html' %}
+    {% block body_block %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-right">
+                <a href="{% url 'blog' %}"  class="btn btn-primary pull-right">
+                        Back
+                </a>
+            </div>
+                {% if  blog_detail.publish  %}
+                <div class="col-12 jumbotron">
+                    <div class="mr50" style="">
+                        <h1> {{ blog_detail.name }}</h1>
+                        <div class="">
+                            <hr>
+                        <!-- <h4 class="">Primary card title</h4> -->
+                        <p class=""> {{ blog_detail.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+        </div>
+    </div>
+    {% endblock body_block %}
+
+
+        

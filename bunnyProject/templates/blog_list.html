@@ -1,0 +1,27 @@
+<!Doctype html>
+{% extends 'base.html' %}
+    {% block body_block %}
+    <div class="container">
+        <div class="row">
+            {% for nam in form_list %}
+                {% if  nam.publish  %}
+                <div class="col-4">
+                        <!-- {{ colors_array }} -->
+                    <div class="card text-white  mb-3" style="max-width: 20rem;">
+                        <div class="card-header"> {{ nam.name |title  }}</div>
+                        <div class="card-body">
+                        <!-- <h4 class="card-title">Primary card title</h4> -->
+                        <p class="card-text"> {{ nam.description|truncatechars:30 }}</p>
+                        <a href="{% url  'details' nam.id %}"  class="btn btn-sm btn-warning"> View Details </a>
+                        <a href="{% url  'delete' nam.id %}"  class="btn btn-sm btn-danger"> Delete </a>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endblock body_block %}
+
+
+        

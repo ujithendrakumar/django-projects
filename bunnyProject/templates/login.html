@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+    {% block body_block %}
+        <div class="container justify-content-center align-items-center mr50">
+            <div class="row mr50">
+            <div class="col mr50">
+                <h1>This is {{page_name}} Page</h1>
+                {% if page_name == 'Login' %}
+                <form action="" method="POST">
+                             <div class="from-group">
+                                <label >Email </label>
+                                <input type="text " name="email" class="form-control"><br>
+                            </div>
+                            <div class="from-group">
+                                <label >Password</label>
+                                <input type="password" name="password" class="form-control"><br>
+                            </div>
+                        {% csrf_token %}
+                        <input type="submit" name="submit" class="btn btn-md btn-success">
+                    </form>
+                {% else %}
+                    <form action="" method="POST">
+                        {% for item in form %}
+                            <div class="from-group">
+                                <label > {{item.label}}</label>
+                                {% if item.name == 'password' %}
+                                    <input type="password" name="{{ item.password }}" class="form-control"><br>
+                                {% else %}
+                                <br>
+                                <input type="text " name="{{ item.name }}" class="form-control"><br>
+                                {% endif %}
+                            </div>
+                        {% endfor %}    
+                        {% csrf_token %}
+                        <input type="submit" name="submit" class="btn btn-md btn-success">
+                    </form>
+                {% endif %} 
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        </div>
+    {% endblock body_block %}
+
+        
