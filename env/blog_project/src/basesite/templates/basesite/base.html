@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="{% static 'basesite/css/bootstrap.css' %}">
+    <title> App</title>
+    <style>
+        body{background:#eee;}
+      .header{
+        background-color: teal;
+      }
+      .header>.container>h3{color:#fff;padding:40px}
+      .mr50{margin-top:20px;}
+      .card{
+        -webkit-box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.4);
+        -moz-box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.4);
+        box-shadow: 3px 4px 5px 0px rgba(0,0,0,0.4);
+        background-color:teal;color:#fff;
+        }
+        .card_bg{
+        background-color:green;color:#fff;
+        }
+        .card_bg_2{
+        background-color:red;color:#fff;
+        }
+        #no_link{
+            text-decoration: none;
+            color:#fff;
+
+            }
+
+    </style>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'basesite/js/jquery-3.2.1.slim.min.js' %}"></script>
+    <!-- <script src="{% static 'basesite/js/popper.min.js' %}"></script> -->
+    <script src="{% static 'basesite/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'basesite/js/validation.js' %}"></script>
+    <script src="{% static 'basesite/js/jkapps.js' %}"></script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+    <!-- Optional JavaScript Ends-->
+  </head>
+  <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">Jithendra Kumar</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ">
+                        {% if request.path == '/' %}
+                        <a class="nav-link active" href="{% url 'index' %}">Home  <span class="sr-only"></span></a>
+                        {% else %}
+                        <a class="nav-link " href="{% url 'index' %}">Home <span class="sr-only"></span></a>
+                        {% endif %}
+                    </li>
+
+                </ul>
+                <!-- <form class="form-inline my-2 my-lg-0">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                      </form> -->
+
+            </div>
+        </div>
+      </nav>
+    <!-- <div class="container-fluid header">
+          <div class="container">
+              <h3>What Do You Want To Do...!</h3>
+          </div>
+    </div> -->
+			<div class="container">
+				{% if messages %}
+					{% for message in messages %}
+					<div class="alert alert-{{ message.tags }} alert-dismissible fade show text-center" role="alert">
+					  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					  </button>
+					  <strong>{{ message }}</strong>
+					</div>
+					{% endfor %}
+				{% endif %}
+			</div>
+
+          {% block body_block %}
+            <!-- achival code goes here  -->
+          {% endblock body_block %}
+
+
+
+
+
+
+
+
+
+<script>
+
+var li = document.getElementsByTagName("input");
+var lit = document.getElementsByTagName("textarea");
+  for(i=0;i<li.length;i++){
+     li[i].classList.add("form-control");
+     //lit[i].classList.add("form-control");
+  }
+
+
+</script>
+</body>
+</html>
