@@ -1,0 +1,21 @@
+{% extends 'basesite/base.html'%}
+
+    {% block body_block %}
+		<div class="container">
+        <h1>Post List</h1>
+        {% for post in post_list %}
+          <div class="post">
+            <h1>  <a href="{% url 'post_detail' pk=post.pk %}">{{post.title |title }}</a></h1>
+            <div class="description">
+                <p> {{ post.text}}</p>
+            </div>
+            <div class="date">
+                <p>Published on: {{ post.published_date | date:"D M Y "}}</p>
+            </div>
+            <a href="{% url 'post_detail' pk=post.pk %}">Comments {{post.approve_commects.count }}</a>
+          </div>
+
+
+        {% endfor %}
+		</div>
+    {% endblock%}

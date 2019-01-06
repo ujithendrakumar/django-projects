@@ -1,0 +1,51 @@
+{% extends 'basesite/base.html'%}
+
+    {% block body_block %}
+		<div class="container">
+      <div class="post">
+        <h1 class="posttitile">  {{post.title |title }}</h1>
+        <div class="description">
+            <p> {{ post.text|safe}}</p>
+        </div>
+        {% if post.published_date %}
+        <div class="date postdate">
+            <p>Published on: {{ post.published_date | date:"D M Y "}}</p>
+        </div>
+        {% else %}
+
+            <a href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+        {% endif %}
+        <a href="{% url 'post_detail' pk=post.pk %}">Comments {{post.approve_commects.count }}</a>
+
+        <p class="postcontent">{{post.title|safe|linebreaks }}</p>
+        {% if user.is_authenticated %}
+        <a href="{% url 'post_edit' pk=post.pk %}" class="btn btn-sm  btn-primary">Edit </a>
+        <a href="{% url 'post_remove' pk=post.pk %}" class="btn  btn-sm btn-danger">Remove  </a>
+        <a href="{% url 'add_comment_to_post' pk=post.pk %}" class="btn btn-sm  btn-info">Add Comment   </a>
+
+
+        {% endif %}
+      </div>
+      <hr>
+      <h3>Comments </h3>
+      <div class="container" style="border:1px solid #ddd;padding:15px">
+          {% for comment in post.comments.all %}
+          <br>
+            <p></p>
+            <p>
+              <small class="text-muted">{{comment.created_at|date:"D M Y"}}</small><br>
+              {{comment.text|title|linebreaks}}
+              <b> Poster By : {{comment.author|title}}</b>
+            </p>
+          {% if not comment.approved_comment %}
+          <a href="{% url 'comment_remove' pk=post.pk %}" class="btn btn-sm  btn-danger">Remove  </a>
+          <a href="{% url 'comment_approve' pk=post.pk %}" class="btn btn-sm  btn-success">Approve  </a>
+
+          {% endif %}
+          {%empty %}
+            <p> No Comments</p>
+          {% endfor %}
+      </div>
+
+		</div>
+    {% endblock%}

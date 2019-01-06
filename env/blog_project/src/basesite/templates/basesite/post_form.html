@@ -1,0 +1,18 @@
+{% extends 'basesite/base.html'%}
+
+    {% block body_block %}
+		<div class="container">
+      <br>
+      <h2>New Post</h2>
+      <div class="jumbotron"style="background:#e4e4e4">
+        <form class="" action="" method="post">
+            {% csrf_token %}
+
+            {{form.as_p}}
+            <button type="submit" class="btn btn-md btn-success" name="button"> Submit </button>
+        </form>
+
+
+        </div>
+		</div>
+    {% endblock%}
